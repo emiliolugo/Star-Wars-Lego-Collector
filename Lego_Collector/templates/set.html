@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {% if set_info %}
+        {{ set_info[0]['name'] }}
+    {% else %}
+        Invalid Set
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    {% if set_info %}
+        <h1 class="text-center" style="padding: 10px;">{{ set_info[0]['name'] }} - {{ set_info[0]["set_num"] }}</h1>
+        
+        <div class="d-flex flex-row mb-3 grid gap-0 column-gap-4 justify-content-center align-items-center">
+            <div class="p-2" style="margin-left: -10%;">
+                <h2>Year Released: {{ set_info[0]['year'] }}</h2>
+                <h2>Part Count: {{ set_info[0]['num_parts'] }}</h2>
+            </div>
+            <div class="p-2">
+                <img class="border border-primary rounded-3 border-4" src="{{ set_info[0]['image'] }}" alt="{{ set_info[0]['name'] }}">
+            </div>
+            <div class="p-2">
+                <form action="/set/{{ set_info[0]['set_num'] }}" method="post">
+                    {% if owned is true %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="owned" id="flexRadioDefault1" value="1" checked>
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Owned
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="owned" id="flexRadioDefault2" value="0">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Not Owned
+                            </label>
+                        </div>
+                    {% else %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="owned" id="flexRadioDefault1" value="1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Owned
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="owned" id="flexRadioDefault2" checked value="0">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Not Owned
+                            </label>
+                        </div>
+                    {% endif %}
+                    <button class="btn btn-primary" type="submit" style="margin: 10px;">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center">
+            <form action="/wishlist" method="post">
+                <input type="hidden" id="lego_set" name="lego_set" value="{{ set_info[0]['set_num'] }}">
+                <button type="submit" id="wished" name="wished" class="btn btn-primary">Add to Wishlist</button>
+            </form>
+        </div>
+    {% else %}
+        <h1>Invalid Set</h1>
+    {% endif %}
+{% endblock %}

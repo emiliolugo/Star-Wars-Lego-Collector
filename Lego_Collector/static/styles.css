@@ -1,0 +1,80 @@
+.red
+{
+    color: red;
+}
+#myProgress {
+    width: 50%;
+    background-color: #ddd;
+    border-radius: 10px;
+    margin: auto;
+  }
+  
+  #myBar {
+    width: 10%;
+    height: 30px;
+    background-color: #FFCF00;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: -10%;
+  }
+  #main_index
+  {
+    justify-content: center;
+    width: 100%;
+    border-radius: 10px;
+    margin: 5% auto;
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+  #index
+  {
+    border-radius: 10px;
+    margin: 2% auto;
+  }
+  .size
+  {
+    max-width: 200px;
+    max-height: 200px;
+    padding-bottom: 10px;
+  }
+  .image_preset
+  {
+    background-color: white; 
+    height: 300px; 
+    width:300px;
+  }
+  .image_sorround
+  {
+    width: 200px;
+    height: 200px;
+    padding-bottom: 10px;
+  }
+  #itemList {
+    position: absolute;
+    top: 100%;
+    left: 50;
+    z-index: 999;
+    background-color: white;
+    color: black;
+    border: 1px solid black; 
+    display: none;
+}
+#searchInput
+{
+    width: 12%;
+}
+#clear_search
+{
+    margin-left: -15%;
+    z-index: 3;
+    border-radius: 6px;
+}
+
+.small_image
+{
+  background-color: white; 
+  height: 50px; 
+  width: 50px;
+}

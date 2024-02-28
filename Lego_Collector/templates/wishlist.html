@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Wishlist
+{% endblock %}
+
+{% block main %}
+<div class = "text-center">
+<h1>Wishlist</h1>
+<br>
+</div>
+    
+{% if wished_sets %}
+    {% set setslen = wished_sets| length%}
+    {% set carlen = setslen / 4 %}
+    {% if setslen / 4 != 0 %}
+        {% set carlen = setslen // 4 + 1 %}
+    {% endif %}
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" style= "height: auto">
+        <div class="carousel-inner">
+            {% for i in range(0, setslen, 3) %}
+                <div class="carousel-item {% if loop.index0 == 0 %}active{% endif %}">
+                    <div class="d-flex justify-content-center align-items-center grid gap-0 column-gap-4">
+                        {% for wished_set in wished_sets[i:i+3] %}
+                            <div class="p-2 g-col-3 border border-primary rounded-3 border-4 image_preset d-flex flex-column justify-content-center align-items-center">
+                                <div class="image_sorround d-flex justify-content-center align-items-center">
+                                    <img class="size" alt="{{ wished_set['image'] }}" src="{{ wished_set['image'] }}">
+                                </div>
+                                <h4><a class="btn btn-primary" href="/set/{{ wished_set['set_num'] }}">Go to Set</a></h4>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    
+    
+{% else %}
+    <h1> No sets available.</h1>
+{% endif %}
+{% endblock %}
+
